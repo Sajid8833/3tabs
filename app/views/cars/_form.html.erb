@@ -1,0 +1,30 @@
+<%= form_with(model: Car) do |form| %>
+  <% if car.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(Car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+      <ul>
+        <% car.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :Category %>
+    <%= collection_select(:car_url, :categories_id, Category.all, :id,:name, { }, {:multiple => false }) %>
+  </div>
+
+  <div>
+    <%= form.label :City  %>
+    <%= collection_select(:cities_url, :cities_id, City.all, :id, :city_name, { }, {:multiple => false }) %>
+  </div>
+
+  <div>
+    <%= form.label :Make %>
+    <%= collection_select(:make_url, :makes_id, Make.all, :id, :make_name, { }, {:multiple => false }) %>
+  </div>
+
+
+<% end %>
